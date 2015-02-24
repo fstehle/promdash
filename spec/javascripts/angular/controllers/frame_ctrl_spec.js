@@ -23,15 +23,6 @@ describe('FrameCtrl', function() {
   });
 
   describe('generating frame components', function() {
-    it('only reads the search part of the url', function() {
-      $scope.frame.url = 'http://graphite/render/?target=alias(stats_counts.statsd.xxx, "doot")#&target=derp&foo=bar&baz=qux';
-      var controller = $controller('FrameCtrl', { $scope: $scope });
-      $scope.generateFrameComponents();
-      expect($scope.frameComponents).toEqual([
-        {key: 'target', value: 'alias(stats_counts.statsd.xxx, "doot")'}
-      ]);
-    });
-
     it('splits the search', function() {
       $scope.frame.url = 'http://graphite/render/?target=alias(stats_counts.statsd.xxx, "de==rp")&target=derp&foo=bar&baz=qux';
       var controller = $controller('FrameCtrl', { $scope: $scope });
